@@ -70,7 +70,141 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 1100px) {
     .resource-grid-2, .resource-grid-3 { grid-template-columns: 1fr; }
 }
+@media (max-width: 1000px) {
+    .nav-wrap {
+        position: relative;
+        flex-wrap: wrap;
+        height: auto;
+        min-height: 78px;
+        padding: 10px 0;
+    }
 
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+        color: var(--ink);
+        font-size: 28px;
+        padding: 8px 12px;
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+    }
+
+    /* JavaScript adds this class when the menu is opened */
+    .nav.active {
+        display: flex;
+    }
+
+    .nav > a {
+        display: block;
+        padding: 12px 16px;
+    }
+
+    .nav .nav-but {
+        align-self: flex-start;
+        margin: 8px 12px;
+    }
+
+    /* Dropdowns expand inside the mobile menu */
+    .dropdown {
+        display: block;
+        width: 100%;
+    }
+
+    .dropbtn {
+        width: 100%;
+        justify-content: space-between;
+        text-align: left;
+    }
+
+    .dropdown-content,
+    .sub-dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+        min-width: 0;
+        box-shadow: none;
+        border-top: none;
+        padding-left: 16px;
+    }
+
+    .dropdown.open > .dropdown-content,
+    .sub-dropdown.open > .sub-dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .sub-dropdown:hover .sub-dropdown-content {
+        /* Prevent hover from controlling mobile dropdowns */
+        display: none;
+    }
+
+    .nav img {
+        display: block;
+        width: 160px;
+        height: auto;
+        margin: 10px 16px;
+    }
+
+    /* Your existing responsive page layouts */
+    .hero {
+        padding-top: 65px;
+    }
+
+    .hero-grid,
+    .challenge-grid,
+    .register-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-art {
+        min-height: 390px;
+    }
+
+    .cards.three,
+    .winner-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .resource-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .register-grid {
+        gap: 35px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2.5px;
+    }
+
+    .hero-stats {
+        gap: 20px;
+    }
+
+    .module {
+        grid-template-columns: 45px 1fr;
+    }
+
+    .module-arrow {
+        display: none;
+    }
+}
 /* Navigation and Layout Adjustments */
 @media (max-width: 1000px) {
     .header-logo, .nav { display: none; }
