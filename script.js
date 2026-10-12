@@ -30,3 +30,19 @@ if (menuToggle && nav) {
             });
         });
 }
+
+document.querySelectorAll(
+  ".dropdown > .dropbtn, .sub-dropdown > .dropbtn"
+).forEach((button) => {
+  button.addEventListener("click", (event) => {
+      if (window.innerWidth > 1000) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const parent = button.parentElement;
+      const isOpen = parent.classList.toggle("open");
+
+      button.setAttribute("aria-expanded", String(isOpen));
+  });
+});

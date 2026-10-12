@@ -225,6 +225,53 @@ a { color: inherit; text-decoration: none; }
     .image-text-row {width:80%;flex-direction: column;align-items: center;gap: 12px;}
     .image-text-image {flex-basis: auto;width: 100%;}
     .image-text-image img {max-height: 180px;}
+    /* Mobile dropdowns */
+    .dropdown {
+        display: block;
+        width: 100%;
+    }
+
+    .dropbtn {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 12px 16px;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .dropdown-content,
+    .sub-dropdown-content {
+        display: none;
+        position: static;
+        width: 100%;
+        min-width: 0;
+        box-shadow: none;
+        border: none;
+        padding-left: 16px;
+    }
+
+    /* Show menus when tapped */
+    .dropdown.open > .dropdown-content {
+        display: block;
+    }
+
+    .sub-dropdown.open > .sub-dropdown-content {
+        display: block;
+    }
+
+    /* Prevent desktop hover behavior from interfering */
+    .dropdown:hover > .dropdown-content,
+    .sub-dropdown:hover > .sub-dropdown-content {
+        display: none;
+    }
+
+    /* Keep explicitly opened menus visible */
+    .dropdown.open:hover > .dropdown-content,
+    .sub-dropdown.open:hover > .sub-dropdown-content {
+        display: block;
+    }
 }
 
 /* Phones */
