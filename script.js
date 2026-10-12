@@ -78,3 +78,39 @@ document.querySelectorAll('.year').forEach(button => {
     button.classList.add('active');
   });
 });
+
+// Touch screens: stop embedded docs/slides from trapping your finger.
+// Each embed gets a "Tap to interact" cover. While the cover is on, swiping
+// scrolls the PAGE as normal. Tap the cover to scroll/use the doc itself,
+// then tap "Done" (or touch anywhere outside it) to hand scrolling back.
+(function () {
+  if (!window.matchMedia('(hover: none)').matches) return; // mouse users don't need it
+
+  document.querySelectorAll('iframe.embedded').forEach(frame => {
+    const wrap = document.createElement('div');
+    wrap.className = 'embed-wrap';
+    frame.parentNode.insertBefore(wrap, frame);
+    wrap.appendChild(frame);
+
+    const cover = document.createElement('button');
+    cover.type = 'button';
+    cover.className = 'embed-cover';
+    cover.textContent = 'Tap to interact';
+    cover.addEventListener('click', () => wrap.classList.add('active'));
+
+    const done = document.createElement('button');
+    done.type = 'button';
+    done.className = 'embed-done';
+    done.textContent = 'Done ✕';
+    done.addEventListener('click', () => wrap.classList.remove('active'));
+
+    wrap.append(cover, done);
+  });
+
+  // Touching anywhere outside an active embed returns scrolling to the page
+  document.addEventListener('touchstart', e => {
+    document.querySelectorAll('.embed-wrap.active').forEach(w => {
+      if (!w.contains(e.target)) w.classList.remove('active');
+    });
+  }, { passive: true });
+})();
