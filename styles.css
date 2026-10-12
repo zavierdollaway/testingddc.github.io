@@ -278,3 +278,63 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 600px) {
     .resource-card { padding: 16px; }
 }
+
+/* ===== Mobile / touch dropdown menu =====
+   Paste this at the very BOTTOM of styles.css (after everything else).
+   The JS in script.js adds an "open" class to .nav, .dropdown and .sub-dropdown. */
+
+/* Phones and tablets: a tap (not hover) controls the dropdowns.
+   Hover is switched off here because touch browsers fake a "hover" on tap,
+   which would leave the menu stuck open and impossible to close. */
+   @media (max-width: 1000px), (hover: none) {
+    .dropdown:hover .dropdown-content,
+    .sub-dropdown:hover .sub-dropdown-content { display: none; }
+  
+    .dropdown.open > .dropdown-content,
+    .sub-dropdown.open > .sub-dropdown-content { display: block; }
+  }
+  
+  /* Narrow screens: the ☰ button opens a panel, dropdowns expand in place */
+  @media (max-width: 1000px) {
+    .nav.open {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      width: min(320px, calc(100vw - 40px));
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      padding: 12px;
+      background: #f4f6f9;
+      border: 1px solid #dde2e8;
+      border-radius: 14px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      z-index: 30;
+    }
+  
+    .nav > a { padding: 12px 15px; }
+    .nav > .nav-but { text-align: center; margin-top: 6px; }
+  
+    .nav .dropdown,
+    .nav .sub-dropdown { display: block; width: 100%; }
+  
+    .nav .dropbtn { width: 100%; justify-content: space-between; text-align: left; }
+  
+    /* Expand inside the panel instead of floating off-screen */
+    .dropdown-content,
+    .sub-dropdown-content {
+      position: static;
+      min-width: 0;
+      margin-left: 12px;
+      background: transparent;
+      box-shadow: none;
+      border-top: 0;
+      border-left: 3px solid var(--ink);
+    }
+  
+    .dropdown-content a,
+    .sub-dropdown-content a { white-space: normal; }
+  }
