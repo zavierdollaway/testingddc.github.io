@@ -6,9 +6,22 @@ const menu = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.nav');
 const touchMode = window.matchMedia('(max-width: 1000px), (hover: none)');
 
+// Size the open menu panel to the space actually visible below the header,
+// so its own scrollbar reaches the last item on any phone.
+function sizeMenu() {
+  if (!nav || !nav.classList.contains('open')) return;
+  nav.style.maxHeight = '';
+  const top = nav.getBoundingClientRect().top;
+  const viewH = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  nav.style.maxHeight = Math.max(160, viewH - top - 12) + 'px';
+}
+window.addEventListener('resize', sizeMenu);
+if (window.visualViewport) window.visualViewport.addEventListener('resize', sizeMenu);
+
 function closeMenu() {
   if (!nav) return;
   nav.classList.remove('open');
+  nav.style.maxHeight = '';
   nav.querySelectorAll('.open').forEach(el => el.classList.remove('open'));
   if (menu) menu.setAttribute('aria-expanded', 'false');
 }
@@ -20,6 +33,7 @@ if (menu && nav) {
     e.stopPropagation();
     const isOpen = nav.classList.toggle('open');
     menu.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) sizeMenu(); else nav.style.maxHeight = '';
   });
 }
 
