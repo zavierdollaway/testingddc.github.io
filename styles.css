@@ -61,7 +61,7 @@ a { color: inherit; text-decoration: none; }
 .resource-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .resource-card { min-width: 0; padding: 20px;}
 .footer-grid {display:grid;width:100%;gap:24px;grid-template-columns: repeat(2,minmax(0,1fr));}
-.footer-grid img{max-width: 200px;}
+.footer-grid img{max-width: 300px;}
 
 
 .image-text-row {width:75%;display: flex;align-items: center;gap: 24px;margin-bottom: 30px;margin:auto}
@@ -185,7 +185,7 @@ a { color: inherit; text-decoration: none; }
     }
 
     .footer-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 
     .register-grid {
@@ -219,7 +219,7 @@ a { color: inherit; text-decoration: none; }
     .cards.three, .winner-grid { grid-template-columns: 1fr; }
     .timeline { grid-template-columns: 1fr 1fr; }
     .resource-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
     .register-grid { gap: 35px; }
     .hero h1 { letter-spacing: -2.5px; }
     .hero-stats { gap: 20px; }
