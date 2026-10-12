@@ -1,6 +1,7 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".nav");
 
+// Hamburger menu
 if (menuToggle && nav) {
     menuToggle.setAttribute("aria-expanded", "false");
 
@@ -13,36 +14,34 @@ if (menuToggle && nav) {
             "aria-label",
             isOpen ? "Close menu" : "Open menu"
         );
+
+        // Reset dropdowns when closing the hamburger menu
+        if (!isOpen) {
+            nav.querySelectorAll(".dropdown.open, .sub-dropdown.open")
+                .forEach((dropdown) => dropdown.classList.remove("open"));
+
+            nav.querySelectorAll(".dropbtn")
+                .forEach((button) => button.setAttribute("aria-expanded", "false"));
+        }
     });
-
-    document.querySelectorAll(".dropdown > .dropbtn, .sub-dropdown > .dropbtn")
-        .forEach((button) => {
-            button.addEventListener("click", (event) => {
-                if (window.innerWidth > 1000) return;
-
-                event.preventDefault();
-                event.stopPropagation();
-
-                const parent = button.parentElement;
-                const isOpen = parent.classList.toggle("open");
-
-                button.setAttribute("aria-expanded", String(isOpen));
-            });
-        });
 }
 
+// Mobile dropdown menus
 document.querySelectorAll(
-  ".dropdown > .dropbtn, .sub-dropdown > .dropbtn"
+    ".dropdown > .dropbtn, .sub-dropdown > .dropbtn"
 ).forEach((button) => {
-  button.addEventListener("click", (event) => {
-      if (window.innerWidth > 1000) return;
+    button.setAttribute("aria-expanded", "false");
 
-      event.preventDefault();
-      event.stopPropagation();
+    button.addEventListener("click", (event) => {
+        // Keep normal hover behavior on desktop
+        if (window.innerWidth > 1000) return;
 
-      const parent = button.parentElement;
-      const isOpen = parent.classList.toggle("open");
+        event.preventDefault();
+        event.stopPropagation();
 
-      button.setAttribute("aria-expanded", String(isOpen));
-  });
+        const parent = button.parentElement;
+        const isOpen = parent.classList.toggle("open");
+
+        button.setAttribute("aria-expanded", String(isOpen));
+    });
 });
