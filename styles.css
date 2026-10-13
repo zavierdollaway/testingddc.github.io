@@ -345,7 +345,7 @@ a { color: inherit; text-decoration: none; }
     .sub-dropdown-content a { white-space: normal; }
   }
 
-/* ===== Mobile: embedded docs, slides and video =====
+  /* ===== Mobile: embedded docs, slides and video =====
    Paste at the very BOTTOM of styles.css (after the mobile menu block). */
 
 /* Embeds never overflow the screen */
@@ -376,33 +376,3 @@ a { color: inherit; text-decoration: none; }
   /* Your existing .pdf-container (used for PDFs) */
   .pdf-container { height: 75vh; height: 75dvh; min-height: 420px; }
 }
-
-/* ===== Touch screens: "Tap to interact" cover on embedded docs =====
-   (script.js adds the .embed-wrap / .embed-cover / .embed-done elements.)
-   Without it, a tall iframe traps your finger: swipes scroll the doc
-   and the page can't move. */
-.embed-wrap { position: relative; }
-.embed-wrap > .embedded { width: 100%; }
-
-.embed-cover {
-  position: absolute; inset: 0; z-index: 2;
-  display: flex; align-items: flex-end; justify-content: center;
-  padding: 0 0 18px; margin: 0;
-  background: rgba(11, 37, 69, 0.04); border: 0; border-radius: 0;
-  color: var(--ink); font: 700 15px/1 Manrope, Arial, sans-serif;
-  cursor: pointer; -webkit-tap-highlight-color: transparent;
-}
-.embed-cover::before {
-  content: ""; position: absolute; inset: 0;   /* faint outline so it reads as tappable */
-  border: 2px dashed rgba(11, 37, 69, 0.25); pointer-events: none;
-}
-.embed-cover { text-shadow: 0 0 6px #fff, 0 0 6px #fff, 0 0 6px #fff; }
-
-.embed-done {
-  display: none; position: absolute; top: 8px; right: 8px; z-index: 3;
-  padding: 8px 14px; border: 0; border-radius: 20px;
-  background: var(--ink); color: #fff; font: 700 14px/1 Manrope, Arial, sans-serif;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-.embed-wrap.active > .embed-cover { display: none; }
-.embed-wrap.active > .embed-done { display: block; }
